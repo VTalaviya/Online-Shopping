@@ -108,6 +108,28 @@ include("includes/main.php");
     padding: 15px 0;
     font-size: 20px;
   }
+  .btn-default{
+      background-color:#fff;
+      border-color: #ccc
+  }
+  .buttons a{
+      display: inline-block;
+      margin:0 5px;
+      line-height:40px;
+      font-size : 13px;
+      padding:5px 25px;
+  } 
+  .btn-danger{
+      background-color: #d9534f;
+      border-color: #d43f3a;
+  }
+  .btn-default:hover {
+
+      color: #333;
+      background-color: #e6e6e6;
+      border-color: #adadad;
+
+  }
 
   @media only screen and (max-width: 320px)  and (max-width: 768px) {
 

@@ -253,6 +253,16 @@ $coupon_limit = $row_coupons['coupon_limit'];
 $coupon_used = $row_coupons['coupon_used'];
 
 
+
+$price_get = "select * from products where product_id=$coupon_pro";
+$price_g = mysqli_query($con,$price_get);
+$ori_p = mysqli_fetch_array($price_g);
+
+$original_price = $ori_p['product_price'];
+
+
+
+
 if($coupon_limit == $coupon_used){
 
 echo "<script>alert('Your Coupon Code Has Been Expired')</script>";
@@ -273,7 +283,9 @@ $add_used = "update coupons set coupon_used=coupon_used+1 where coupon_code='$co
 
 $run_used = mysqli_query($con,$add_used);
 
-$update_cart = "update cart set p_price='$coupon_price' where p_id='$coupon_pro' AND ip_add='$ip_add'";
+$updated_price = ($original_price)-($coupon_price);
+
+$update_cart = "update cart set p_price='$updated_price' where p_id='$coupon_pro' AND ip_add='$ip_add'";
 
 $run_update = mysqli_query($con,$update_cart);
 

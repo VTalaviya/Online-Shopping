@@ -6,11 +6,19 @@ include("includes/db.php");
 include("includes/header.php");
 include("functions/functions.php");
 include("includes/main.php");
-
+include("sendmail.php");
 
 ?>
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+  
   <!-- MAIN -->
   <main>
     <!-- HERO -->
@@ -381,19 +389,93 @@ $customer_confirm_code = mt_rand();
 
 $subject = "Email Confirmation Message";
 
-$from = "fenilmunjani82@gmail.com";
+$from = "avenuefashion.vf@gmail.com";
 
 $message = "
 
-<h2>
-Email Confirmation By Avenue Fashion $c_name
-</h2>
+<html>
+<head>
+<style>
+    #wrapper {
+    font-family: sans-serif;
+    display: block;
+    width: 650px;
+    margin: auto;
+    border-radius: 5px;
+    margin-top: 55px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 3px 35px 0;
+    overflow: hidden;
+}
 
-<a href='localhost/online shopping/customer/my_account.php?$customer_confirm_code'>
+#top-img {
+    background: linear-gradient(45deg, #07203c 0%, #491c1c 100%);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    text-align: center;
+    padding: 75px 0;
+}
 
-Click Here To Confirm Email
+#top-img b {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 32px;
+}
 
-</a>
+#data {
+    margin: 40px 25px;
+}
+
+hr {
+    margin: 20px 5px;
+    border: none;
+    background: linear-gradient(45deg, #07203c 0%, #491c1c 100%);
+    height: 1px;
+}
+
+.button {
+    display: block;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    background-color: #ff1531;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 15px 0;
+    border-radius: 45px;
+    margin-top: 15px;
+}
+  </style>
+</head>
+<body>
+
+<div id='wrapper'>
+  <div id='top-img'>
+    <b>Avenue Fashion</b>
+    Account activation Mail
+  </div>
+  <div id='data'>
+    Dear $c_name,
+    <br />
+    Thanks for signing up!
+    <br />
+    <br />
+    Click on the button below to activate your account.
+    <br />
+    <a href='localhost/online shopping/customer/my_account.php?cust_code=$customer_confirm_code' style='color:white;' target='_blank' class='button'>Activate my account</a>
+    <hr />
+    Any doubts? have some questions?
+    <br />
+    Send us an email to <a href='mailto:avenuefashion.vf@gmail.com'>avenuefashion.vf@gmail.com</a> we will happy to help.
+    <br />
+    <br />
+    Have a great day!
+  </div>
+</div>
+</body>
+</html>
 
 ";
 
@@ -401,7 +483,7 @@ $headers = "From: $from \r\n";
 
 $headers .= "Content-type: text/html\r\n";
 
-mail($c_email,$subject,$message,$headers);
+sendmail($subject,$message,$c_email);
 
 $insert_customer = "insert into customers (customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image,customer_ip,customer_confirm_code) values ('$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address','$c_image','$c_ip','$customer_confirm_code')";
 
@@ -416,7 +498,7 @@ $check_cart = mysqli_num_rows($run_cart);
 
 if($check_cart>0){
 
-$_SESSION['customer_email']=$c_email;
+// $_SESSION['customer_email']=$c_email;
 
 echo "<script>alert('You have been Registered Successfully')</script>";
 
@@ -424,11 +506,11 @@ echo "<script>window.open('checkout.php','_self')</script>";
 
 }else{
 
-$_SESSION['customer_email']=$c_email;
+// $_SESSION['customer_email']=$c_email;
 
 echo "<script>alert('You have been Registered Successfully')</script>";
 
-echo "<script>window.open('index.php','_self')</script>";
+echo "<script>window.open('checkout.php','_self')</script>";
 
 
 }

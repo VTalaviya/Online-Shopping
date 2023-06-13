@@ -6,6 +6,7 @@ include("includes/db.php");
 include("includes/header.php");
 include("functions/functions.php");
 include("includes/main.php");
+include("sendmail.php");
 
 ?>
 
@@ -142,27 +143,27 @@ exit();
 else{
 
 $message = "
-
-<h1 align='center'> Your Password Has Been Sent To You </h1>
-
-<h2 align='center'> Dear, $c_name </h2>
-
-<h3 align='center'>
-
-Your Password is : <span> <b>$c_pass</b> </span>
-
-</h3>
-
-<h3 align='center'>
-
-<p>Click Below button To Login Your Account</p>
-<button style='font-size:20px;color:black;padding: 0 30px;line-height:40px;'><a style='text-decoration: none;color: black;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;' href='localhost/online shopping/checkout.php'>Login</a></button>
-
-</h3>
-
+<div style='font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2'>
+  <div style='margin:50px auto;width:70%;padding:20px 0'>
+    <div style='border-bottom:1px solid #eee'>
+      <a href='' style='font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600'>Avenue Fashion</a>
+    </div>
+    <p style='font-size:1.1em'>Hi,$c_name</p>
+    <p>Thank you for choosing us. Your Password is : <span> <b>$c_pass</b> </span>
+    </p>
+    <h2 style='background: silver;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;'><a style='text-decoration: none;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;' href='localhost/online shopping/checkout.php'>Login</a>
+    </h2>
+    <p style='font-size:0.9em;'>Regards,<br />Avenue Fashion</p>
+    <hr style='border:none;border-top:1px solid #eee' />
+    <div style='float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300'>
+      <p>Avenue Fashion Inc</p>
+      <p>India</p>
+    </div>
+  </div>
+</div>
 ";
 
-$from = "fenilmunjani82@gmail.com";
+$from = "avenuefashio.vf@gmail.com";
 
 $subject = "Your Password";
 
@@ -170,9 +171,11 @@ $headers = "From: $from\r\n";
 
 $headers .= "Content-type: text/html\r\n";
 
-mail($c_email,$subject,$message,$headers);
-
 echo "<script> alert('Your Password has been sent to you, Check your inbox or spam section.') </script>";
+
+
+sendmail($subject,$message,$c_email);
+
 
 echo "<script>window.open('checkout.php','_self')</script>";
 
