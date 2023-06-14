@@ -58,7 +58,7 @@ include("includes/db.php");
     } 
         ?>
         <div id="invo">
-    <h1 style="background: black; padding: 10px; text-align: center; color: white; font-size: 35px; margin: 10px auto 0px auto; width: 600px;">INVOICE</h1><br><br>
+    <p style="background: black; padding: 10px; text-align: center; color: white; font-size: 35px; margin: 10px auto 0px auto; width: 600px;"><b>INVOICE<b></p><br><br>
 
         <div>Customer Name : <?php echo $c_name; ?></div>
         <div>Mobile No. : <?php echo $mobile; ?></div>
