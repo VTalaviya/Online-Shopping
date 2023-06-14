@@ -12,7 +12,7 @@ include('include/header.php');
 				
 					
 					<form id="checkout-selection" action="pay.php" method="POST">		
-						<input type="hidden" name="item_name" value="My Test Product">
+						<input type="hidden" name="item_name" value="My Products">
 						<input type="hidden" name="item_description" value="My Test Product Description">
 						<input type="hidden" name="item_number" value="3456">
 						<input type="hidden" name="amount" value="1">

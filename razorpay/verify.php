@@ -83,7 +83,7 @@ if ($success === true)
     if($payment)
     {
         echo "
-            <script>alert('Order has been successful')</script>
+            <script>alert('Order has been Placed successfully')</script>
         ";
     }
     
@@ -153,11 +153,13 @@ else
                 $p_txnid = $row['txnid'];
                 $unitPrice = $row['product_price'];
                 $Total = $row['due_amount'];
+                $newDate = date("d-m-Y", strtotime($orderDate));
 
         } }
         ?>
     <div>Customer Name : <?php echo $c_name; ?></div>
     <div>Mobile No. : <?php echo $mobile; ?></div>
+    <div>Order Date : <?php echo $newDate; ?></div>
     <div>Shipping address : <?php echo $c_address; ?></div><br><br>
     <div>
     <table class="verify" id="printTable" border="1" cellspacing="0" cellpadding="5" width="100%">

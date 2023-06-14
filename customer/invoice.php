@@ -54,7 +54,7 @@ include("includes/db.php");
         $p_txnid = $row['txnid'];
         $unitPrice = $row['product_price'];
         $Total = $row['due_amount'];
-
+        $newDate = date("d-m-Y", strtotime($orderDate));
     } 
         ?>
         <div id="invo">
@@ -62,6 +62,7 @@ include("includes/db.php");
 
         <div>Customer Name : <?php echo $c_name; ?></div>
         <div>Mobile No. : <?php echo $mobile; ?></div>
+        <div>Order Date : <?php echo $newDate; ?></div>
         <div>Shipping address : <?php echo $c_address; ?></div>
 
     <br><br>
@@ -119,8 +120,8 @@ include("includes/db.php");
     <div class="button">
             
         <input style="background: black; margin: 0 5px; padding: 12px 25px; border: 2px solid black; color: white; border-radius: 5px; display: inline-block; text-align: center; text-decoration: none;" type="button" value="Download PDF" onclick="printTable()">
-        <a href="../index.php">
-            <input style="background: black; margin: 0 5px; padding: 12px 25px; border: 2px solid black; color: white; border-radius: 5px; display: inline-block; text-align: center; text-decoration: none;" type="button" value="Continue Shopping">
+        <a href="my_account.php?my_orders">
+            <input style="background: black; margin: 0 5px; padding: 12px 25px; border: 2px solid black; color: white; border-radius: 5px; display: inline-block; text-align: center; text-decoration: none;" type="button" value="Back To My Account">
         </a>
     </div>
 
