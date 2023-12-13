@@ -233,9 +233,15 @@ $product_price = $pro_price;
 
 $id = $_SESSION['customer_id'];
 
-$query = "insert into cart (p_id,customer_id,ip_add,qty,p_price,size) values ('$p_id','$id','$ip_add','$product_qty','$product_price','$product_size')";
+if($id==null || $id == "")
+{
+    header("Location:checkout.php");
+}
+else{
+    $query = "insert into cart (p_id,customer_id,ip_add,qty,p_price,size) values ('$p_id','$id','$ip_add','$product_qty','$product_price','$product_size')";
 
-$run_query = mysqli_query($db,$query);
+    $run_query = mysqli_query($db,$query);
+}
 
 echo "<script>window.open('$pro_url','_self')</script>";
 
